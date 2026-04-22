@@ -25,6 +25,10 @@ public class QuantityMeasurementApp {
         return length.convertTo(toUnit);
     }
 
+    public static Length demonstrateLengthAddition(Length length1, Length length2) {
+        return length1.add(length2);
+    }
+
     public static void main(String[] args) {
         System.out.println("=== Quantity Measurement App ===");
         demonstrateLengthComparison(1.0, Length.LengthUnit.FEET, 12.0, Length.LengthUnit.INCHES);
@@ -35,10 +39,12 @@ public class QuantityMeasurementApp {
         demonstrateLengthComparison(3.0, Length.LengthUnit.FEET, 1.0, Length.LengthUnit.YARDS);
         demonstrateLengthComparison(30.48, Length.LengthUnit.CENTIMETERS, 1.0, Length.LengthUnit.FEET);
 
-        Length converted = demonstrateLengthConversion(3.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
-        System.out.println("3.0 FEET converted to INCHES: " + converted.getValue());
+        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
+        Length l2 = new Length(12.0, Length.LengthUnit.INCHES);
+        System.out.println("1 foot + 12 inches = " + demonstrateLengthAddition(l1, l2));
 
-        Length converted2 = demonstrateLengthConversion(2.0, Length.LengthUnit.YARDS, Length.LengthUnit.INCHES);
-        System.out.println("2.0 YARDS converted to INCHES: " + converted2.getValue());
+        Length l3 = new Length(1.0, Length.LengthUnit.YARDS);
+        Length l4 = new Length(3.0, Length.LengthUnit.FEET);
+        System.out.println("1 yard + 3 feet = " + demonstrateLengthAddition(l3, l4));
     }
 }

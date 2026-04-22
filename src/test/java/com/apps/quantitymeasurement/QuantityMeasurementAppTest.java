@@ -8,86 +8,62 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testFeetEquality() {
-        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(1.0, Length.LengthUnit.FEET);
-        assertEquals(l1, l2);
+        assertEquals(new Length(1.0, Length.LengthUnit.FEET), new Length(1.0, Length.LengthUnit.FEET));
     }
 
     @Test
     public void testInchesEquality() {
-        Length l1 = new Length(1.0, Length.LengthUnit.INCHES);
-        Length l2 = new Length(1.0, Length.LengthUnit.INCHES);
-        assertEquals(l1, l2);
+        assertEquals(new Length(1.0, Length.LengthUnit.INCHES), new Length(1.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void testFeetInchesComparison() {
-        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(12.0, Length.LengthUnit.INCHES);
-        assertEquals(l1, l2);
+        assertEquals(new Length(1.0, Length.LengthUnit.FEET), new Length(12.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void testFeetInequality() {
-        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(2.0, Length.LengthUnit.FEET);
-        assertNotEquals(l1, l2);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.FEET), new Length(2.0, Length.LengthUnit.FEET));
     }
 
     @Test
     public void testInchesInequality() {
-        Length l1 = new Length(1.0, Length.LengthUnit.INCHES);
-        Length l2 = new Length(2.0, Length.LengthUnit.INCHES);
-        assertNotEquals(l1, l2);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.INCHES), new Length(2.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void testCrossUnitInequality() {
-        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(1.0, Length.LengthUnit.INCHES);
-        assertNotEquals(l1, l2);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.FEET), new Length(1.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void testMultipleFeetComparison() {
-        Length l1 = new Length(2.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(24.0, Length.LengthUnit.INCHES);
-        assertEquals(l1, l2);
+        assertEquals(new Length(2.0, Length.LengthUnit.FEET), new Length(24.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void yardEquals36Inches() {
-        Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        Length l2 = new Length(36.0, Length.LengthUnit.INCHES);
-        assertEquals(l1, l2);
+        assertEquals(new Length(1.0, Length.LengthUnit.YARDS), new Length(36.0, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void centimeterEquals39Point3701Inches() {
-        Length l1 = new Length(100.0, Length.LengthUnit.CENTIMETERS);
-        Length l2 = new Length(39.3701, Length.LengthUnit.INCHES);
-        assertEquals(l1, l2);
+        assertEquals(new Length(100.0, Length.LengthUnit.CENTIMETERS), new Length(39.3701, Length.LengthUnit.INCHES));
     }
 
     @Test
     public void threeFeetEqualsOneYard() {
-        Length l1 = new Length(3.0, Length.LengthUnit.FEET);
-        Length l2 = new Length(1.0, Length.LengthUnit.YARDS);
-        assertEquals(l1, l2);
+        assertEquals(new Length(3.0, Length.LengthUnit.FEET), new Length(1.0, Length.LengthUnit.YARDS));
     }
 
     @Test
     public void thirtyPoint48CmEqualsOneFoot() {
-        Length l1 = new Length(30.48, Length.LengthUnit.CENTIMETERS);
-        Length l2 = new Length(1.0, Length.LengthUnit.FEET);
-        assertEquals(l1, l2);
+        assertEquals(new Length(30.48, Length.LengthUnit.CENTIMETERS), new Length(1.0, Length.LengthUnit.FEET));
     }
 
     @Test
     public void yardNotEqualToInches() {
-        Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        Length l2 = new Length(1.0, Length.LengthUnit.INCHES);
-        assertNotEquals(l1, l2);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.YARDS), new Length(1.0, Length.LengthUnit.INCHES));
     }
 
     @Test
@@ -98,8 +74,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void equalsReturnsFalseForNull() {
-        Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        assertNotEquals(l1, null);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.YARDS), null);
     }
 
     @Test
@@ -114,9 +89,7 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void differentValuesSameUnitNotEqual() {
-        Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        Length l2 = new Length(2.0, Length.LengthUnit.YARDS);
-        assertNotEquals(l1, l2);
+        assertNotEquals(new Length(1.0, Length.LengthUnit.YARDS), new Length(2.0, Length.LengthUnit.YARDS));
     }
 
     @Test
@@ -127,18 +100,63 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void convertFeetToInches() {
-        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(
-            3.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
-        Length expectedLength = new Length(36.0, Length.LengthUnit.INCHES);
-        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedLength));
+        Length result = QuantityMeasurementApp.demonstrateLengthConversion(3.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
+        assertEquals(new Length(36.0, Length.LengthUnit.INCHES), result);
     }
 
     @Test
     public void convertYardsToInchesUsingOverloadedMethod() {
-        Length lengthInYards = new Length(2.0, Length.LengthUnit.YARDS);
-        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(
-            lengthInYards, Length.LengthUnit.INCHES);
-        Length expectedLength = new Length(72.0, Length.LengthUnit.INCHES);
-        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedLength));
+        Length result = QuantityMeasurementApp.demonstrateLengthConversion(new Length(2.0, Length.LengthUnit.YARDS), Length.LengthUnit.INCHES);
+        assertEquals(new Length(72.0, Length.LengthUnit.INCHES), result);
+    }
+
+     @Test
+    public void addFeetAndInches() {
+        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
+        Length l2 = new Length(12.0, Length.LengthUnit.INCHES);
+        Length result = QuantityMeasurementApp.demonstrateLengthAddition(l1, l2);
+        assertEquals(new Length(2.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_SameUnit_FeetPlusFeet() {
+        Length result = new Length(1.0, Length.LengthUnit.FEET).add(new Length(2.0, Length.LengthUnit.FEET));
+        assertEquals(new Length(3.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_SameUnit_InchPlusInch() {
+        Length result = new Length(6.0, Length.LengthUnit.INCHES).add(new Length(6.0, Length.LengthUnit.INCHES));
+        assertEquals(new Length(12.0, Length.LengthUnit.INCHES), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_InchPlusFeet() {
+        Length result = new Length(12.0, Length.LengthUnit.INCHES).add(new Length(1.0, Length.LengthUnit.FEET));
+        assertEquals(new Length(24.0, Length.LengthUnit.INCHES), result);
+    }
+
+    @Test
+    public void testAddition_CrossUnit_YardPlusFeet() {
+        Length result = new Length(1.0, Length.LengthUnit.YARDS).add(new Length(3.0, Length.LengthUnit.FEET));
+        assertEquals(new Length(2.0, Length.LengthUnit.YARDS), result);
+    }
+
+    @Test
+    public void testAddition_WithZero() {
+        Length result = new Length(5.0, Length.LengthUnit.FEET).add(new Length(0.0, Length.LengthUnit.INCHES));
+        assertEquals(new Length(5.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_NegativeValues() {
+        Length result = new Length(5.0, Length.LengthUnit.FEET).add(new Length(-2.0, Length.LengthUnit.FEET));
+        assertEquals(new Length(3.0, Length.LengthUnit.FEET), result);
+    }
+
+    @Test
+    public void testAddition_NullSecondOperand() {
+        assertThrows(IllegalArgumentException.class, () ->
+            new Length(1.0, Length.LengthUnit.FEET).add(null));
     }
 }
