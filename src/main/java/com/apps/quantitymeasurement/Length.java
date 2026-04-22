@@ -6,7 +6,9 @@ public class Length {
 
     public enum LengthUnit {
         FEET(12.0),
-        INCHES(1.0);
+        INCHES(1.0),
+        YARDS(36.0),
+        CENTIMETERS(0.393701);
 
         private final double conversionFactor;
 
@@ -25,7 +27,7 @@ public class Length {
     }
 
     private double convertToBaseUnit() {
-        return value * unit.getConversionFactor();
+        return Math.round(value * unit.getConversionFactor() * 100000.0) / 100000.0;
     }
 
     public boolean compare(Length thatLength) {
@@ -41,9 +43,37 @@ public class Length {
         return this.compare(that);
     }
 
+    public Length convertTo(LengthUnit targetUnit) {
+        if (targetUnit == null) throw new IllegalArgumentException("Target unit cannot be null");
+        double baseValue = this.value * this.unit.getConversionFactor();
+        double convertedValue = Math.round((baseValue / targetUnit.getConversionFactor()) * 100000.0) / 100000.0;
+        return new Length(convertedValue, targetUnit);
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public LengthUnit getUnit() {
+        return unit;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%.2f %s", value, unit);
+    }
+
     public static void main(String[] args) {
         Length length1 = new Length(1.0, LengthUnit.FEET);
         Length length2 = new Length(12.0, LengthUnit.INCHES);
         System.out.println("Are lengths equal? " + length1.equals(length2));
+
+        Length length3 = new Length(1.0, LengthUnit.YARDS);
+        Length length4 = new Length(36.0, LengthUnit.INCHES);
+        System.out.println("Are lengths equal? " + length3.equals(length4));
+
+        Length length5 = new Length(100.0, LengthUnit.CENTIMETERS);
+        Length length6 = new Length(39.3701, LengthUnit.INCHES);
+        System.out.println("Are lengths equal? " + length5.equals(length6));
     }
 }
