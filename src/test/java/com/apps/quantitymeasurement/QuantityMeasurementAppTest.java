@@ -1,3 +1,4 @@
+
 package com.apps.quantitymeasurement;
 
 import org.junit.jupiter.api.Test;
@@ -122,5 +123,37 @@ public class QuantityMeasurementAppTest {
     public void crossUnitEqualityDemonstrateMethod() {
         assertTrue(QuantityMeasurementApp.demonstrateLengthComparison(
             1.0, Length.LengthUnit.YARDS, 36.0, Length.LengthUnit.INCHES));
+    }
+
+    @Test
+    public void testInchesEquality_SameValue() {
+        Inches inch1 = new Inches(1.0);
+        Inches inch2 = new Inches(1.0);
+        assertEquals(inch1, inch2);
+    }
+
+    @Test
+    public void testInchesEquality_DifferentValue() {
+        Inches inch1 = new Inches(1.0);
+        Inches inch2 = new Inches(2.0);
+        assertNotEquals(inch1, inch2);
+    }
+
+    @Test
+    public void testInchesEquality_NullComparison() {
+        Inches inch1 = new Inches(1.0);
+        assertNotEquals(inch1, null);
+    }
+
+    @Test
+    public void testInchesEquality_DifferentClass() {
+        Inches inch1 = new Inches(1.0);
+        assertNotEquals(inch1, "1.0");
+    }
+
+    @Test
+    public void testInchesEquality_SameReference() {
+        Inches inch1 = new Inches(1.0);
+        assertEquals(inch1, inch1);
     }
 }
