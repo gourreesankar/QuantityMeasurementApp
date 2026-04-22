@@ -43,6 +43,26 @@ public class Length {
         return this.compare(that);
     }
 
+    public Length convertTo(LengthUnit targetUnit) {
+        if (targetUnit == null) throw new IllegalArgumentException("Target unit cannot be null");
+        double baseValue = this.value * this.unit.getConversionFactor();
+        double convertedValue = Math.round((baseValue / targetUnit.getConversionFactor()) * 100000.0) / 100000.0;
+        return new Length(convertedValue, targetUnit);
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public LengthUnit getUnit() {
+        return unit;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%.2f %s", value, unit);
+    }
+
     public static void main(String[] args) {
         Length length1 = new Length(1.0, LengthUnit.FEET);
         Length length2 = new Length(12.0, LengthUnit.INCHES);
